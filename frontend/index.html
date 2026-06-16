@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexus — Enterprise Agentic Corrective RAG with dynamic RLHF feedback">
+    <title>Nexus — NEXUS Knowledge Assistant</title>
+    <!-- Google Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/assets/logo.png">
+    <link rel="stylesheet" href="/static/style.css?v=1.0.1">
+</head>
+<body class="font-body-md overflow-hidden dark-theme">
+
+    <div class="app">
+        <!-- ── LEFT SIDEBAR: NEXUS Chat & Recent List ── -->
+        <aside class="sidebar">
+            <div class="sidebar__brand">
+                <div class="sidebar__logo-container">
+                    <svg viewBox="0 0 24 24" width="28" height="28" class="sidebar__logo" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent); filter: drop-shadow(0 2px 8px var(--accent-glow));">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="sidebar__title">NEXUS</h1>
+                    <p class="sidebar__subtitle">KNOWLEDGE ASSISTANT</p>
+                </div>
+            </div>
+
+            <button class="sidebar__action-btn" id="new-chat-btn">
+                <span class="material-symbols-outlined">add</span>
+                <span>New chat</span>
+            </button>
+            
+            <div class="sidebar__search">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="sidebar-search-input" placeholder="Search chats">
+            </div>
+
+            <nav class="sidebar__nav">
+                <div class="sidebar__section-divider">
+                    <p class="sidebar__section-title">RECENT</p>
+                </div>
+                <div class="sidebar__history" id="sidebar-history-list">
+                    <!-- Populated dynamically from interaction history -->
+                </div>
+                <div class="sidebar__history-footer">
+                    <button class="clear-history-btn" id="clear-history-btn">
+                        <span class="material-symbols-outlined">delete_sweep</span>
+                        <span>Clear Chat History</span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="sidebar__footer">
+                <div class="profile-card">
+                    <div class="profile-avatar">U</div>
+                    <div class="profile-info">
+                        <p class="profile-name">User</p>
+                        <p class="profile-plan">Nexus Workspace</p>
+                    </div>
+                    <button class="settings-trigger-btn" id="settings-trigger-btn" title="System Settings">
+                        <span class="material-symbols-outlined">settings</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ── MAIN WORKSPACE: Chat Canvas ── -->
+        <div class="workspace">
+            <header class="top-bar">
+                <div class="top-bar__left">
+                    <h2 class="top-bar__session-title" id="session-title">PTO policy questions</h2>
+                    <span class="top-bar__session-subtitle" id="session-subtitle">Grounded in 3 indexed sources</span>
+                </div>
+                <div class="top-bar__right">
+                    <div class="top-bar__sync-status" id="top-bar-status" title="Checking connection…">
+                        <div class="status-dot status-dot--checking" id="sync-dot"></div>
+                        <span class="sync-text" id="sync-text">Connecting…</span>
+                    </div>
+                    <div class="top-bar__btn-group">
+                        <button class="top-bar__action-btn" id="share-btn">
+                            <span class="material-symbols-outlined">share</span>
+                            <span>Share</span>
+                        </button>
+                        <button class="top-bar__action-btn" id="kb-toggle-btn">
+                            <span class="material-symbols-outlined">database</span>
+                            <span>Knowledge</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="chat-main">
+                <div class="chat-feed custom-scrollbar" id="chat-messages">
+                    <!-- Welcome Screen -->
+                    <div class="welcome empty-state" id="welcome">
+                        <h2 class="welcome__title welcome__title--glowing">Ask NEXUS anything about your documents</h2>
+                        <div class="onboarding-chips suggestion-chips">
+                            <button type="button" class="chip" data-query="What is our PTO policy?">
+                                <span class="material-symbols-outlined chip__icon">article</span>
+                                <span>What is our PTO policy?</span>
+                            </button>
+                            <button type="button" class="chip" data-query="How do I request time off?">
+                                <span class="material-symbols-outlined chip__icon">event_note</span>
+                                <span>How do I request time off?</span>
+                            </button>
+                            <button type="button" class="chip" data-query="Explain the hybrid retrieval architecture">
+                                <span class="material-symbols-outlined chip__icon">account_tree</span>
+                                <span>Explain the hybrid retrieval architecture</span>
+                            </button>
+                            <button type="button" class="chip" data-query="Summarize key document details">
+                                <span class="material-symbols-outlined chip__icon">auto_awesome</span>
+                                <span>Summarize key document details</span>
+                            </button>
+                        </div>
+                        <form class="input-form" id="chat-form">
+                            <div class="input-wrapper">
+                                <button type="button" class="input-action-btn" id="input-attach-btn" title="Attach Files">
+                                    <span class="material-symbols-outlined">add</span>
+                                </button>
+                                <textarea id="chat-input" placeholder="Ask NEXUS..." rows="1" maxlength="2000"></textarea>
+                                <button type="button" class="input-action-btn" id="input-mic-btn" title="Voice Typing">
+                                    <span class="material-symbols-outlined">mic</span>
+                                </button>
+                                <button type="submit" class="send-btn" id="send-btn" disabled>
+                                    <span class="material-symbols-outlined">arrow_upward</span>
+                                </button>
+                            </div>
+                            <p class="input-hint">NEXUS cites sources from your indexed documents. Verify critical answers.</p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Input Command Bar Container (receives form after first query) -->
+                <div class="input-container" id="bottom-input-container"></div>
+            </div>
+        </div>
+
+        <!-- ── RIGHT SIDEBAR: Knowledge Base Panel ── -->
+        <aside class="kb-sidebar" id="kb-sidebar">
+            <div class="kb-sidebar__header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined text-secondary">database</span>
+                    <span class="kb-sidebar__title">Knowledge base</span>
+                    <span class="doc-count-badge" id="kb-doc-count">0 Documents</span>
+                </div>
+                <button class="kb-sidebar__close-btn" id="kb-close-btn" title="Close Panel">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="kb-sidebar__content custom-scrollbar knowledge-panel__sections">
+                <!-- Upload Zone -->
+                <div class="kb-card" style="margin-bottom: 20px;">
+                    <div class="upload-zone knowledge-panel__dropzone" id="upload-zone">
+                        <div class="upload-icon-container">
+                            <span class="material-symbols-outlined upload-icon">upload_file</span>
+                        </div>
+                        <p class="upload-text">Click or drag documents here to upload</p>
+                        <p class="upload-hint">PDF, TXT, MD — up to 20 MB</p>
+                        <input type="file" id="file-input" multiple accept=".pdf,.txt,.md" hidden>
+                    </div>
+                    <div class="upload-files" id="upload-files"></div>
+                    <div class="upload-actions" style="margin-top: 10px; display: none;">
+                        <button class="btn btn--primary w-full" id="modal-upload" disabled>
+                            <span class="material-symbols-outlined">upload_file</span>
+                            <span>Ingest Documents</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Document List -->
+                <div class="kb-sidebar__section">
+                    <p class="section-title indexed-documents-header">INDEXED DOCUMENTS</p>
+                    <div class="doc-list-wrapper custom-scrollbar">
+                        <div class="doc-list" id="doc-list">
+                            <!-- Ingested documents will go here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ── SETTINGS MODAL OVERLAY ── -->
+    <div class="modal-overlay" id="settings-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="material-symbols-outlined text-secondary">settings</span>
+                    <h3 style="font-family:'Geist'; font-weight:600; font-size:16px;">System Configuration</h3>
+                </div>
+                <button class="modal-close-btn" id="settings-close-btn" title="Close Settings">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="modal-body custom-scrollbar">
+                <form class="settings-form" id="settings-form">
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="set-dense-weight">Dense Weight (alpha)</label>
+                            <span class="slider-value" id="val-dense-weight">0.60</span>
+                        </div>
+                        <input type="range" class="slider" id="set-dense-weight" min="0" max="1" step="0.05" value="0.6">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="set-sparse-weight">Sparse Weight (beta)</label>
+                            <span class="slider-value" id="val-sparse-weight">0.40</span>
+                        </div>
+                        <input type="range" class="slider" id="set-sparse-weight" min="0" max="1" step="0.05" value="0.4">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="set-dense-top-k">Dense Top K</label>
+                            <input type="number" id="set-dense-top-k" min="1" max="50" value="10">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="set-sparse-top-k">Sparse Top K</label>
+                            <input type="number" id="set-sparse-top-k" min="1" max="50" value="10">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="set-fusion-top-k">Fusion Top K</label>
+                            <input type="number" id="set-fusion-top-k" min="1" max="20" value="6">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="set-rrf-k">RRF K Constant</label>
+                            <input type="number" id="set-rrf-k" min="1" max="200" value="60">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group flex-1">
+                            <label for="set-max-rewrites">Max Rewrite Attempts</label>
+                            <input type="number" id="set-max-rewrites" min="0" max="10" value="3">
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="set-max-hallucinations">Max Hallucination Retries</label>
+                            <input type="number" id="set-max-hallucinations" min="0" max="10" value="2">
+                        </div>
+                    </div>
+
+                    <!-- System Backend Status -->
+                    <div class="form-group" style="margin-top: 15px; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm);">
+                        <label style="font-size:11px; color:var(--text-sidebar-secondary);">SYSTEM BACKEND STATUS</label>
+                        <div class="gemini-status-indicator" style="margin-top: 6px; display:flex; align-items:center; gap:8px;">
+                            <span class="status-dot status-dot--checking" id="gemini-dot"></span>
+                            <span id="gemini-label" style="font-weight: 600; font-size:13px; color:white;">Checking Gemini API...</span>
+                        </div>
+                        <div class="gemini-hint" id="gemini-hint" style="display:none;"></div>
+                    </div>
+
+                    <!-- RLHF metrics -->
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label style="font-size:11px; color:var(--text-sidebar-secondary);">RLHF ADAPTATION ANALYTICS</label>
+                        <div class="metrics-grid" style="margin-top: 6px;">
+                            <div class="metric-card">
+                                <span class="metric-label">Satisfaction</span>
+                                <span class="metric-value text-success" id="stat-satisfaction">—</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">Total Chats</span>
+                                <span class="metric-value" id="stat-interactions">0</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">Likes</span>
+                                <span class="metric-value text-success" id="stat-likes">0</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">Dislikes</span>
+                                <span class="metric-value text-error" id="stat-dislikes">0</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">Dense α</span>
+                                <span class="metric-value" id="stat-dense">0.60</span>
+                            </div>
+                            <div class="metric-card">
+                                <span class="metric-label">Sparse β</span>
+                                <span class="metric-value" id="stat-sparse">0.40</span>
+                            </div>
+                            <div class="metric-card col-span-2">
+                                <span class="metric-label">Boosted Chunks</span>
+                                <span class="metric-value text-primary" id="stat-boosted">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary w-full mt-4" style="background: var(--accent); color: white;">
+                        <span class="material-symbols-outlined">save</span>
+                        <span>Save Settings</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="/static/script.js?v=1.0.1"></script>
+</body>
+</html>
