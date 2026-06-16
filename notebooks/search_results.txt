@@ -1,0 +1,468 @@
+=== style.css --bg-bubble-bot definition ===
+  --bg-card-hover:             rgba(13, 148, 136, 0.12); /* Teal hover accent at 12% opacity */
+    --bg-bubble-bot:             #1a1a24; /* Level 2 - Bot bubble surface */
+    
+    /* Text Colors */
+    --text-prim
+-----------------
+er .message__bubble p {
+    color: #e2e2e8;
+}
+
+.message--bot .message__bubble {
+    background: var(--bg-bubble-bot);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    color: var(--text-
+-----------------
+
+=== style.css message__bubble background properties ===
+ledge-panel {
+    background: var(--surface-1);
+}
+.message__bubble, .input-container, .suggestion-chip {
+    background: var(--surface-2);
+}
+
+h1, h2, h3, h4, .sidebar__title, .top-bar__session-title, .welcome__title, .card-title {
+    font-family: 'Geist', sans-seri
+-----------------
+rtant;
+    display: block;
+    flex-shrink: 0;
+}
+
+.message__bubble {
+    position: relative;
+    max-width: 68%; /* Constrain to consistent 65-70% max-width column */
+    padding: 12px 16px; /* Fixed even padding */
+    border-radius: var(--radius-md);
+    box-shado
+-----------------
+0, 0.15);
+    line-height: 1.6;
+}
+
+.message--user .message__bubble {
+    background: rgba(45, 212, 191, 0.12);
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    color: #e2e2e8;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.
+-----------------
+: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.message--user .message__bubble p {
+    color: #e2e2e8;
+}
+
+.message--bot .message__bubble {
+    background: var(--bg-bubble-bot);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    color: var(--text-prim
+-----------------
+__bubble p {
+    color: #e2e2e8;
+}
+
+.message--bot .message__bubble {
+    background: var(--bg-bubble-bot);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-bottom-left-radius: 2px;
+}
+
+.message__bub
+-----------------
+-primary);
+    border-bottom-left-radius: 2px;
+}
+
+.message__bubble p {
+    font-size: 14px; /* Response body: 14px regular */
+    font-weight: 400;
+    line-height: 1.6; /* line-height 1.6 */
+    color: #e2e2e8; /* readable but not harsh */
+    margin-bottom: 12px;
+
+-----------------
+able but not harsh */
+    margin-bottom: 12px;
+}
+
+.message__bubble p:last-child {
+    margin-bottom: 0;
+}
+
+/* Markdown tweaks */
+.message__markdown-body {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #e2e2e8;
+}
+
+.message__markdown-body
+-----------------
+none;
+}
+
+/* Typing Indicator */
+#typing-indicator .message__bubble {
+    background: rgba(255, 255, 255, 0.02);
+    border-style: dashed;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+/* ── Chat Input Command Bar ──────────────
+-----------------
+Card — Dark Background Overrides */
+.message--bot .message__bubble,
+.message__bubble {
+    background: #1a1a24 !important;
+    color: #e2e2e8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 12px !important;
+    padding: 16p
+-----------------
+ound Overrides */
+.message--bot .message__bubble,
+.message__bubble {
+    background: #1a1a24 !important;
+    color: #e2e2e8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 12px !important;
+    padding: 16px 20px !important;
+-----------------
+   padding: 16px 20px !important;
+}
+.message--bot .message__bubble p,
+.message--bot .message__bubble li,
+.message--bot .message__bubble span {
+    color: #e2e2e8 !important;
+}
+.message--bot .message__bubble h2,
+.message--bot .message__bubble h3,
+.message--bot .messa
+-----------------
+}
+.message--bot .message__bubble p,
+.message--bot .message__bubble li,
+.message--bot .message__bubble span {
+    color: #e2e2e8 !important;
+}
+.message--bot .message__bubble h2,
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ff
+-----------------
+
+.message--bot .message__bubble li,
+.message--bot .message__bubble span {
+    color: #e2e2e8 !important;
+}
+.message--bot .message__bubble h2,
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ffffff !important;
+}
+
+/* Center the M
+-----------------
+ {
+    color: #e2e2e8 !important;
+}
+.message--bot .message__bubble h2,
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ffffff !important;
+}
+
+/* Center the Message Column */
+.chat-feed,
+.messages-list,
+.chat-area__content {
+    
+-----------------
+
+.message--bot .message__bubble h2,
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ffffff !important;
+}
+
+/* Center the Message Column */
+.chat-feed,
+.messages-list,
+.chat-area__content {
+    display: flex !important;
+    flex-
+-----------------
+
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ffffff !important;
+}
+
+/* Center the Message Column */
+.chat-feed,
+.messages-list,
+.chat-area__content {
+    display: flex !important;
+    flex-direction: column !important;
+    a
+-----------------
+
+}
+
+/* User Bubble — Muted Teal */
+.message--user .message__bubble {
+    background: rgba(45, 212, 191, 0.12) !important;
+    border: 1px solid rgba(45, 212, 191, 0.25) !important;
+    color: #e2e2e8 !important;
+    border-bottom-right-radius: 2px !important;
+}
+.mes
+-----------------
+om-right-radius: 2px !important;
+}
+.message--user .message__bubble p {
+    color: #e2e2e8 !important;
+}
+
+/* "Clear Chat History" Button — Visual Separation */
+.clear-history-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: calc(100% - 24px)
+-----------------
+
+=== script.js user message bubble styles / inline backgrounds ===
+ckGemini();
+        } else {
+            const msg = typeof detail === "string" ? detail : (detail.error || JSON.stringify(detail));
+            appendErrorMessage("Server error: " + msg);
+        }
+    }
+
+    function appendUserMessage(text) {
+        const html = `
+            <div class="message message--user">
+                <div class="message__bubble">
+                    <p>${escapeHtml(text)}</p>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+    }
+
+    function appendErrorMessage(text) {
+        const html = `
+    
+-----------------
+             </div>
+                            <div class="ollama-error-box" style="padding: 10px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm);
+-----------------
+       return `
+                        <div class="source-card" style="padding: var(--spacing-md); background: var(--bg-subsurface); border: 1px solid var(--border-light); border-radius: var(--radius-md); disp
+-----------------
+ass="ref-badge" style="font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; background: rgba(59, 130, 246, 0.15); color: var(--secondary); padding: 2px 6px; border-radius: var(--radius-s
+-----------------
+                          </h4>
+                            <div style="padding: var(--spacing-sm); background: var(--bg-card); border-left: 3px solid var(--secondary); border-radius: var(--radius-sm); font-siz
+-----------------
+cing-md); font-size: 13px; border: 1px dashed var(--border-color); border-radius: var(--radius-md); background: var(--bg-canvas);">
+                        No sources used for this response.
+                   
+-----------------
+);
+            setText("#stat-sparse", (w.sparse || 0.4).toFixed(2));
+        } catch { /* Suppress background check errors */ }
+    }
+
+    async function loadSettings() {
+        try {
+            const res = 
+-----------------
+unt", `${data.count} document${data.count === 1 ? "" : "s"} synced`);
+        } catch { /* Suppress background poll errors */ }
+    }
+
+    function renderDocList(docs) {
+        if (!docs.length) {
+            
+-----------------
+item" style="padding: 12px; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: rgba(255,255,255,0.02); display: flex; align-items: center; gap: var(--spacing-sm); transition: al
+-----------------
+v class="doc-item__icon-wrapper" style="width: 32px; height: 32px; border-radius: var(--radius-sm); background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; flex-shrink: 
+-----------------
+
+=== script.js chat container references ===
+─────────
+    const $  = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+
+    const chatMessages  = $("#chat-messages");
+    const chatForm      = $("#chat-form");
+    const chatInput     = $("#chat-input");
+    const sendBtn       = $("#send-btn");
+    const newChat
+-----------------
+─────────────────────────────
+    const $  = (sel) => document.querySelector(sel);
+    const $$ = (sel) => document.querySelectorAll(sel);
+
+    const chatMessages  = $("#chat-messages");
+    const chatForm      = $("#chat-form");
+    const chatInput     = $("#chat-input");
+    const sendBtn       = $("#send-btn
+-----------------
+uthorized")}</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            chatMessages.insertAdjacentHTML("beforeend", html);
+            scrollToBottom();
+            checkGemini();
+        } else {
+            const msg = typeof detai
+-----------------
+er">
+                <div class="message__bubble">
+                    <p>${escapeHtml(text)}</p>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+    }
+
+    function appendErrorMessage(text) {
+        const html = `
+            <d
+-----------------
+px;">error</span>
+                        <p>⚠ ${escapeHtml(text)}</p>
+                    </div>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+    }
+
+    function appendBotMessage(data) {
+        const iid = data.interaction_id
+-----------------
+                  ${pillsHtml}
+                        ${feedbackHtml}
+                    </div>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+    }
+
+    // Submit Like / Dislike Signal
+    window.__submitFeedback = async funct
+-----------------
+bar titles
+        setText("#session-title", "New chat");
+        setText("#session-subtitle", "Ask anything about your documents");
+        
+        chatMessages.innerHTML = "";
+        if (welcome) {
+            chatMessages.appendChild(welcome);
+            welcome.style.display = "flex";
+            // Move
+-----------------
+  setText("#session-subtitle", "Ask anything about your documents");
+        
+        chatMessages.innerHTML = "";
+        if (welcome) {
+            chatMessages.appendChild(welcome);
+            welcome.style.display = "flex";
+            // Move form back into the welcome container
+            if (chatForm) 
+-----------------
+                          <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+        return chatMessages.lastElementChild;
+    }
+
+    function handleInputChange(
+-----------------
+div>
+                </div>
+            </div>`;
+        chatMessages.insertAdjacentHTML("beforeend", html);
+        scrollToBottom();
+        return chatMessages.lastElementChild;
+    }
+
+    function handleInputChange() {
+        chatInput.style.height = "auto";
+        chatInput.style.height = Math.min(chatIn
+-----------------
+Btn() {
+        sendBtn.disabled = !chatInput.value.trim() || isLoading;
+    }
+
+    function scrollToBottom() {
+        requestAnimationFrame(() => { chatMessages.scrollTop = chatMessages.scrollHeight; });
+    }
+
+    function setText(sel, value) {
+        const el = $(sel);
+        if (el) el.textContent = valu
+-----------------
+isabled = !chatInput.value.trim() || isLoading;
+    }
+
+    function scrollToBottom() {
+        requestAnimationFrame(() => { chatMessages.scrollTop = chatMessages.scrollHeight; });
+    }
+
+    function setText(sel, value) {
+        const el = $(sel);
+        if (el) el.textContent = value;
+    }
+
+    function fm
+-----------------
+} else {
+                    el.classList.remove("active");
+                }
+            });
+        }
+        
+        // Clear chat canvas
+        chatMessages.innerHTML = "";
+        
+        // Hide welcome screen
+        if (welcome) {
+            welcome.style.display = "none";
+            const bottomCo
+-----------------
+ponse);
+        
+        // If they left a feedback, reflect it on the feedback button state
+        if (item.feedback) {
+            const lastMsg = chatMessages.lastElementChild;
+            if (lastMsg) {
+                const bar = lastMsg.querySelector(".feedback-bar");
+                if (bar) {
+         
+-----------------

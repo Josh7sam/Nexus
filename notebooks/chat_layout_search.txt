@@ -1,0 +1,190 @@
+=== Matches for query: \.chat-main ===
+68, 0.25);
+    background: rgba(239, 68, 68, 0.06);
+}
+
+.sidebar__clear-btn .material-symbols-outlined {
+    font-size: 14px;
+}
+
+/* ── Chat Feed ── */
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    /* Soft screen-wide violet splash of light centered in the chat panel */
+    background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.06) 0%, rgba(13, 14
+-----------------
+=== Matches for query: \.chat-feed ===
+' 0;
+}
+
+/* Custom Premium Scrollbars — Show only on hover of the container */
+.custom-scrollbar::-webkit-scrollbar,
+.sidebar__nav::-webkit-scrollbar,
+.chat-feed::-webkit-scrollbar,
+.kb-sidebar__content::-webkit-scrollbar,
+.doc-list-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.sidebar__nav::-webkit-scrollbar-track,
+.chat-feed::-webkit-scrollbar
+-----------------
+-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.sidebar__nav::-webkit-scrollbar-track,
+.chat-feed::-webkit-scrollbar-track,
+.kb-sidebar__content::-webkit-scrollbar-track,
+.doc-list-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.sidebar__nav::-webkit-scrollbar-thumb,
+.chat-feed::-we
+-----------------
+rapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.sidebar__nav::-webkit-scrollbar-thumb,
+.chat-feed::-webkit-scrollbar-thumb,
+.kb-sidebar__content::-webkit-scrollbar-thumb,
+.doc-list-wrapper::-webkit-scrollbar-thumb {
+    background: transparent; /* hidden by default */
+    border-radius: 10px;
+    transition: background var(--transition-fast) eas
+-----------------
+
+/* Show only on hover of the scrollable container */
+.custom-scrollbar:hover::-webkit-scrollbar-thumb,
+.sidebar__nav:hover::-webkit-scrollbar-thumb,
+.chat-feed:hover::-webkit-scrollbar-thumb,
+.kb-sidebar__content:hover::-webkit-scrollbar-thumb,
+.doc-list-wrapper:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15); /* scrollbar-color: rgba(255,255,255,0.15) */
+}
+
+.custom-scrollbar::-w
+-----------------
+15); /* scrollbar-color: rgba(255,255,255,0.15) */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+.sidebar__nav::-webkit-scrollbar-thumb:hover,
+.chat-feed::-webkit-scrollbar-thumb:hover,
+.kb-sidebar__content::-webkit-scrollbar-thumb:hover,
+.doc-list-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Firefox scrollbar theming */
+.custom-scrollbar,
+.sideb
+-----------------
+kit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Firefox scrollbar theming */
+.custom-scrollbar,
+.sidebar__nav,
+.chat-feed,
+.kb-sidebar__content,
+.doc-list-wrapper {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent; /* hidden by default */
+    transition: scrollbar-color var(--transition-fast) ease;
+}
+
+.custom-scrollbar:hover,
+.sidebar__nav:hover,
+-----------------
+nt transparent; /* hidden by default */
+    transition: scrollbar-color var(--transition-fast) ease;
+}
+
+.custom-scrollbar:hover,
+.sidebar__nav:hover,
+.chat-feed:hover,
+.kb-sidebar__content:hover,
+.doc-list-wrapper:hover {
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+/* ── App Grid Layout ────────────────────────────────────────── */
+.app {
+    display: flex;
+    height: 100vh;
+    width: 1
+-----------------
+ the chat panel */
+    background: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.06) 0%, rgba(13, 148, 136, 0.01) 45%, transparent 70%);
+}
+
+.chat-feed {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-xl) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-behavior: smooth;
+}
+
+.message-wrapper {
+    margin: 0 auto;
+    max-width: var(--chat-width);
+ 
+-----------------
+bble h2,
+.message--bot .message__bubble h3,
+.message--bot .message__bubble strong {
+    color: #ffffff !important;
+}
+
+/* Center the Message Column */
+.chat-feed,
+.messages-list,
+.chat-area__content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 24px 16px !important;
+}
+.
+-----------------
+=== Matches for query: #chat-messages ===
+=== Matches for query: \.workspace ===
+8, 136, 0.12); /* 12% teal opacity hover state */
+    transform: rotate(45deg);
+}
+
+/* ── Main Workspace ────────────────────────────────────────── */
+.workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    min-width: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header/Top Bar */
+.top-bar {
+    height: 64px;
+    background: rgba(11, 13, 18, 0.4);
+    back
+-----------------
